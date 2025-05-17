@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         // Mendaftarkan middleware api
         $router->middlewareGroup('api', [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            // \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Cors::class, // Tambahkan CORS middleware
         ]);

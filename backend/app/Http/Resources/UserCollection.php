@@ -14,10 +14,17 @@ class UserCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
+        $resource = $this->resource->toArray();
+        
         return [
             'data' => $this->collection,
             'meta' => [
-                'total' => $this->collection->count(),
+                'current_page' => $resource['current_page'] ?? 1,
+                'from' => $resource['from'] ?? null,
+                'last_page' => $resource['last_page'] ?? 1,
+                'per_page' => (int)($resource['per_page'] ?? 10),
+                'to' => $resource['to'] ?? null,
+                'total' => $resource['total'] ?? $this->collection->count(),
             ],
         ];
     }

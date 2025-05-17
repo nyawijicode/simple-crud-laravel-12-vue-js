@@ -25,9 +25,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // Auth routes
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     // User CRUD routes (admin only)
-    Route::middleware('can:admin')->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
+        // ...
+        // User CRUD routes - tanpa middleware admin
         Route::apiResource('users', UserController::class);
     });
 });
